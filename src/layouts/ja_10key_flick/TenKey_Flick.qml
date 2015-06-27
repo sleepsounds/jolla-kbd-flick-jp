@@ -63,7 +63,7 @@ KeyBase {
 
 //    showPopper: false
     keyType: KeyType.CharacterKey
-    text: keyText.text
+    text: keyText.text.length === 1 ? keyText.text : (keyText.text.charAt(flickerIndex) ? keyText.text.charAt(flickerIndex) : keyText.text.chaAt(0))
 
     Column {
         anchors.horizontalCenter: parent.horizontalCenter
