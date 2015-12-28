@@ -413,7 +413,11 @@ Item {
         if (shiftState === ShiftState.NoShift) {
             shiftState = ShiftState.LatchedShift
         } else if (shiftState === ShiftState.LatchedShift) {
-            shiftState = ShiftState.LockedShift
+            if (layout && layout.capsLockSupported) {
+                shiftState = ShiftState.LockedShift
+            } else {
+                shiftState = ShiftState.NoShift
+            }
         } else if (shiftState === ShiftState.LockedShift) {
             shiftState = ShiftState.NoShift
         } else {

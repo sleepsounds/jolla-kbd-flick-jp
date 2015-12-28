@@ -28,7 +28,6 @@ KeyboardLayout {
             separator: true
         }
         TenKey_Flick {
-            caption: "\u3042"
             flickerText: "\u3042\u3044\u3046\u3048\u304A"
             captionShifted: " "
             symView: "1@%#"
@@ -37,7 +36,6 @@ KeyboardLayout {
             accentsShifted: ""
         }
         TenKey_Flick {
-            caption: "\u304B"
             flickerText: "\u304B\u304D\u304F\u3051\u3053"
             captionShifted: "abc"
             captionShifted2: "ABC"
@@ -47,7 +45,6 @@ KeyboardLayout {
             accentsShifted: ""
         }
         TenKey_Flick {
-            caption: "\u3055"
             flickerText: "\u3055\u3057\u3059\u305B\u305D"
             captionShifted: "def"
             captionShifted2: "DEF"
@@ -73,7 +70,6 @@ KeyboardLayout {
             separator: true
         }
         TenKey_Flick {
-            caption: "\u305F"
             flickerText: "\u305F\u3061\u3064\u3066\u3068"
             captionShifted: "ghi"
             captionShifted2: "GHI"
@@ -83,7 +79,6 @@ KeyboardLayout {
             accentsShifted: ""
         }
         TenKey_Flick {
-            caption: "\u306A"
             flickerText: "\u306A\u306B\u306C\u306D\u306E"
             captionShifted: "jkl"
             captionShifted2: "JKL"
@@ -93,7 +88,6 @@ KeyboardLayout {
             accentsShifted: ""
         }
         TenKey_Flick {
-            caption: "\u306F"
             flickerText: "\u306F\u3072\u3075\u3078\u307B"
             captionShifted: "mno"
             captionShifted2: "MNO"
@@ -123,7 +117,6 @@ KeyboardLayout {
 //            implicitSeparator: true
         }
         TenKey_Flick {
-            caption: "\u307E"
             flickerText: "\u307E\u307F\u3080\u3081\u3082"
             captionShifted: "pqrs"
             captionShifted2: "PQRS"
@@ -133,7 +126,6 @@ KeyboardLayout {
             accentsShifted: ""
         }
         TenKey_Flick {
-            caption: "\u3084"
             flickerText: "\u3084\u3084\u3086\u3084\u3088"
             captionShifted: "tuv"
             captionShifted2: "TUV"
@@ -143,7 +135,6 @@ KeyboardLayout {
             accentsShifted: ""
         }
         TenKey_Flick {
-            caption: "\u3089"
             flickerText: "\u3089\u308A\u308B\u308C\u308D"
             captionShifted: "wxyz"
             captionShifted2: "WXYZ"
@@ -175,7 +166,6 @@ KeyboardLayout {
             }
         }
         TenKey_Flick {
-            caption: "\u309B"
             captionShifted: "\u2191"
             flickerText: "\u309B\u309C"
             symView: "\u300C\u300D()"
@@ -186,7 +176,6 @@ KeyboardLayout {
             symbolOnly: true
         }
         TenKey_Flick {
-            caption: "\u308F"
             flickerText: "\u308F\u3092\u3093\u30FC"
             captionShifted: "@;/&"
             symView: "0'\"\u00B0"
@@ -195,7 +184,6 @@ KeyboardLayout {
             accentsShifted: ""
         }
         TenKey_Flick {
-            caption: "()"
             flickerText: "\u3001\u3002\uFF1F\uFF01"
             captionShifted: ".,-_"
             symView: ".,\u2606\u266A"
