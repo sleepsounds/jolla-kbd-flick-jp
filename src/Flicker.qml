@@ -47,8 +47,8 @@ QtObject {
         var flickerMoved = keyboard.mapToItem(target, point.x, point.y)
         var flickerKeySize = Math.floor(Math.max(target.height, target.width) + Math.min(target.height, target.width)) / 2
 
-        var flickerKeyOuterX = Math.floor((flickerMoved.x < 0 ? flickerMoved.x * -1 : (flickerMoved.x > flickerKeySize ? flickerMoved.x - flickerKeySize : 0)) * 0.5)
-        var flickerKeyOuterY = Math.floor((flickerMoved.y < 0 ? flickerMoved.y * -1 : (flickerMoved.y > flickerKeySize ? flickerMoved.y - flickerKeySize : 0)) * 0.5)
+        var flickerKeyOuterX = Math.floor((flickerMoved.y < 0 ? flickerMoved.y * -1 : (flickerMoved.y > flickerKeySize ? flickerMoved.y - flickerKeySize : 0)) * 1)
+        var flickerKeyOuterY = Math.floor((flickerMoved.x < 0 ? flickerMoved.x * -1 : (flickerMoved.x > flickerKeySize ? flickerMoved.x - flickerKeySize : 0)) * 1)
 
         var flickerKeyDiffX = Math.floor(Math.max(flickerKeySize, target.width) - Math.min(flickerKeySize, target.width)) / 2
         var flickerKeyDiffY = Math.floor(Math.max(flickerKeySize, target.height) - Math.min(flickerKeySize, target.height)) / 2
