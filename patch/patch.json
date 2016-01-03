@@ -1,0 +1,8 @@
+{
+    "name": "jolla-kbd-flick-jp",
+    "description": "Keyboard layout for Japanese flick input",
+    "category": "text input",
+    "infos": {
+        "maintainer": "sleepsounds"
+    }
+}
