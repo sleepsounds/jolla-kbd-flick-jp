@@ -5,7 +5,9 @@ OTHER_FILES = \
         rpm/ \
         src/
 
-src.files = src/*
+src.files = \
+        src/Flicker.qml \
+        src/layouts
 src.path = /usr/share/maliit/plugins/com/jolla
 
 patch.files = patch/*
