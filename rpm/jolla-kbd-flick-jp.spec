@@ -43,11 +43,9 @@ rm -rf %{buildroot}
 /usr/share/patchmanager/patches/%{name}/
 
 %pre
-if [ -f /usr/sbin/patchmanager ]; then
-    /usr/sbin/patchmanager -u %{name} || true
+if [ -d /usr/share/patchmanager/patches/%{name} ]; then
+/usr/sbin/patchmanager -u %{name} || true
 fi
 
 %preun
-if [ -f /usr/sbin/patchmanager ]; then
-    /usr/sbin/patchmanager -u %{name} || true
-fi
+/usr/sbin/patchmanager -u %{name} || true
