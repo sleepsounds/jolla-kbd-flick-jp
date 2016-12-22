@@ -39,14 +39,8 @@ rm -rf %{buildroot}
 /usr/share/maliit/plugins/com/jolla/Flicker.qml
 /usr/share/maliit/plugins/com/jolla/layouts/ja_10key_flick.qml
 /usr/share/maliit/plugins/com/jolla/layouts/ja_10key_flick.conf
-/usr/share/maliit/plugins/com/jolla/layouts/ja_10key_flick/JaInputHandler.qml
-/usr/share/maliit/plugins/com/jolla/layouts/ja_10key_flick/TenKey_CustomArrowKey.qml
-/usr/share/maliit/plugins/com/jolla/layouts/ja_10key_flick/TenKey_Flick.qml
-/usr/share/maliit/plugins/com/jolla/layouts/ja_10key_flick/TenKey_ShiftKey.qml
-/usr/share/maliit/plugins/com/jolla/layouts/ja_10key_flick/TenKey_SymbolKey.qml
-/usr/share/maliit/plugins/com/jolla/layouts/ja_10key_flick/parse_10key_flick.js
-/usr/share/patchmanager/patches/jolla-kbd-flick-jp/patch.json
-/usr/share/patchmanager/patches/jolla-kbd-flick-jp/unified_diff.patch
+/usr/share/maliit/plugins/com/jolla/layouts/ja_10key_flick/
+/usr/share/patchmanager/patches/%{name}/
 
 %pre
 if [ -f /usr/sbin/patchmanager ]; then
