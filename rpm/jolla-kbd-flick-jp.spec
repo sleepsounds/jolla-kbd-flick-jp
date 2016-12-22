@@ -6,7 +6,7 @@ License:    LGPLv2
 Source:     %{name}.tar.gz
 URL:        https://github.com/sleepsounds/jolla-kbd-flick-jp
 BuildArch:  noarch
-Packager:   helicalgear
+Packager:   helicalgear,knokmki612
 Requires:   libanthy-qml-plugin
 Requires:   patchmanager-ui
 Requires:   jolla-anthy-jp
