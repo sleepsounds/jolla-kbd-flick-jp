@@ -22,18 +22,11 @@ Allows you to type in Japanese by flick on Sailfish OS.
 %setup -q -n %{name}
 
 %build
-# do nothing
+%qmake5
 
 %install
-#rm -rf %{buildroot}
-#make install DESTDIR=%{buildroot}
-mkdir -p %{buildroot}/usr/share/maliit/plugins/com/jolla/
-cp -r src/* %{buildroot}/usr/share/maliit/plugins/com/jolla/
-mkdir -p %{buildroot}/usr/share/patchmanager/patches/jolla-kbd-flick-jp/
-cp -r patch/* %{buildroot}/usr/share/patchmanager/patches/jolla-kbd-flick-jp/
-
-%clean
 rm -rf %{buildroot}
+%qmake5_install
 
 %files
 /usr/share/maliit/plugins/com/jolla/Flicker.qml
