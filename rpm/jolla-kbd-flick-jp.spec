@@ -8,7 +8,7 @@ URL:        https://github.com/sleepsounds/jolla-kbd-flick-jp
 BuildArch:  noarch
 Packager:   helicalgear,knokmki612
 Requires:   libanthy-qml-plugin
-Requires:   patchmanager-ui
+Requires:   patchmanager
 Requires:   jolla-anthy-jp
 Requires:   jolla-keyboard
 Requires:   jolla-xt9
