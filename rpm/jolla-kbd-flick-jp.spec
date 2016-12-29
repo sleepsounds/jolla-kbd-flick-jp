@@ -1,6 +1,6 @@
 Name:       jolla-kbd-flick-jp
 Version:    0.03
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Japanese flick layout for Sailfish OS
 License:    LGPLv2
 Source:     %{name}.tar.gz
