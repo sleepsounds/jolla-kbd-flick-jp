@@ -114,6 +114,12 @@ Item {
         }
     }
 
+    Timer {
+        id: autocapsTimer
+        interval: 1
+        onTriggered: applyAutocaps()
+    }
+
     QuickPick {
         id: quickPick
     }
@@ -132,7 +138,7 @@ Item {
         onFocusTargetChanged: {
             if (activeEditor) {
                 resetKeyboard()
-                applyAutocaps()
+                autocapsTimer.start() // focus change may come before updated context, delay handling
             }
         }
         onInputMethodReset: {
@@ -206,6 +212,7 @@ Item {
                     && closeSwipeActive
                     && pressTimer.running
                     && (point.y - point.startY > closeSwipeThreshold)) {
+                // swiped down to close keyboard
                 MInputMethodQuick.userHide()
                 if (point.pressedKey) {
                     inputHandler._handleKeyRelease()
@@ -241,8 +248,10 @@ Item {
             }
         }
 
-        if (point.pressedKey !== null)
+        if (point.pressedKey !== null) {
+            inputHandler._handleKeyRelease()
             point.pressedKey.pressed = false
+        }
 
         point.pressedKey = key
         if (!point.initialKey) {
@@ -254,6 +263,8 @@ Item {
         lastPressedKey = point.pressedKey
 
         if (point.pressedKey !== null) {
+            // when typing fast with two finger, one finger might be still pressed when the other hits screen.
+            // on that case, trigger input from previous character
             releasePreviousCharacterKey(point)
             point.pressedKey.pressed = true
             inputHandler._handleKeyPress(point.pressedKey)
@@ -288,7 +299,7 @@ Item {
                 popper.release()
                 point.pressedKey.pressed = false
             } else {
-                releaseKey(point.pressedKey)
+                triggerKey(point.pressedKey)
             }
 
             if (point.pressedKey.keyType !== KeyType.ShiftKey && !isPressed(KeyType.DeadKey)) {
@@ -341,6 +352,7 @@ Item {
             return
 
         if (point.pressedKey) {
+            inputHandler._handleKeyRelease()
             point.pressedKey.pressed = false
             if (lastPressedKey === point.pressedKey) {
                 lastPressedKey = null
@@ -441,10 +453,10 @@ Item {
         }
     }
 
-    function existingCharacterKey(updatedPoint) {
+    function existingCharacterKey(ignoredPoint) {
         for (var i = 0; i < ActivePoints.array.length; i++) {
             var point = ActivePoints.array[i]
-            if (point !== updatedPoint
+            if (point !== ignoredPoint
                     && point.pressedKey
                     && point.pressedKey.keyType === KeyType.CharacterKey) {
                 return point
@@ -452,15 +464,15 @@ Item {
         }
     }
 
-    function releasePreviousCharacterKey(updatedPoint) {
-        var existing = existingCharacterKey(updatedPoint)
+    function releasePreviousCharacterKey(ignoredPoint) {
+        var existing = existingCharacterKey(ignoredPoint)
         if (existing) {
-            releaseKey(existing.pressedKey)
+            triggerKey(existing.pressedKey)
             ActivePoints.remove(existing)
         }
     }
 
-    function releaseKey(key) {
+    function triggerKey(key) {
         if (key.keyType !== KeyType.DeadKey) {
             inputHandler._handleKeyClick(key)
         }
