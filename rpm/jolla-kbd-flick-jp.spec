@@ -12,7 +12,7 @@ Requires:   patchmanager
 Requires:   jolla-anthy-jp
 Requires:   jolla-keyboard
 Requires:   jolla-xt9
-Requires:   sailfish-version >= 2.0.2
+Requires:   sailfish-version >= 2.1.0
 
 %description
 Allows you to type in Japanese by flick on Sailfish OS.
