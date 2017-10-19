@@ -45,6 +45,7 @@ FunctionKey {
                :  (direction === "left") ? Qt.Key_Left
                :  (direction === "right") ? Qt.Key_Right : Qt.Key_Unknown)
     implicitWidth: arrowKeyWidth
+    background.visible: false
     
     onPressedChanged: {
 	if(pressed) {
