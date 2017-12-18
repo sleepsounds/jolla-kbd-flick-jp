@@ -1,12 +1,12 @@
 Name:       jolla-kbd-flick-jp
 Version:    0.04
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Japanese flick layout for Sailfish OS
 License:    LGPLv2
 Source:     %{name}.tar.gz
 URL:        https://github.com/sleepsounds/jolla-kbd-flick-jp
 BuildArch:  noarch
-Packager:   helicalgear,knokmki612
+Packager:   helicalgear,knokmki612,toxip
 Requires:   libanthy-qml-plugin
 Requires:   patchmanager
 Requires:   jolla-anthy-jp
