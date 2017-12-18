@@ -11,7 +11,6 @@ Requires:   libanthy-qml-plugin
 Requires:   patchmanager
 Requires:   jolla-anthy-jp
 Requires:   jolla-keyboard
-Requires:   jolla-xt9
 Requires:   sailfish-version >= 2.1.0
 
 %description
