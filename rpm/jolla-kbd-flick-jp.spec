@@ -11,7 +11,7 @@ Requires:   libanthy-qml-plugin
 Requires:   patchmanager
 Requires:   jolla-anthy-jp
 Requires:   jolla-keyboard
-Requires:   sailfish-version >= 2.1.0
+Requires:   sailfish-version >= 2.1.4
 
 %description
 Allows you to type in Japanese by flick on Sailfish OS.

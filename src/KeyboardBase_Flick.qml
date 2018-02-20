@@ -59,6 +59,7 @@ Item {
     // allow chinese input handler to override enter key state
     property bool chineseOverrideForEnter
 
+    property bool silenceFeedback
     property bool layoutChangeAllowed
     property string deadKeyAccent
     property bool shiftKeyPressed
@@ -190,6 +191,7 @@ Item {
         }
 
         closeSwipeActive = true
+        silenceFeedback = false
         pressTimer.start()
 
         for (var i = 0; i < touchPoints.length; i++) {
@@ -213,22 +215,25 @@ Item {
             point.x = incomingPoint.x
             point.y = incomingPoint.y
 
-            if (ActivePoints.array.length === 1
-                    && closeSwipeActive
-                    && pressTimer.running
-                    && (point.y - point.startY > closeSwipeThreshold)
-                    && !flicker.enabled) {
-                // swiped down to close keyboard
-                MInputMethodQuick.userHide()
-                if (point.pressedKey) {
-                    inputHandler._handleKeyRelease()
-                    point.pressedKey.pressed = false
+            if (ActivePoints.array.length === 1 && closeSwipeActive && pressTimer.running && !flicker.enabled) {
+                var yDiff = point.y - point.startY
+                silenceFeedback = (yDiff > Math.abs(point.x - point.startX))
+
+                if (yDiff > closeSwipeThreshold) {
+                    // swiped down to close keyboard
+                    MInputMethodQuick.userHide()
+                    if (point.pressedKey) {
+                        inputHandler._handleKeyRelease()
+                        point.pressedKey.pressed = false
+                    }
+                    lastPressedKey = null
+                    pressTimer.stop()
+                    languageSwitchTimer.stop()
+                    ActivePoints.remove(point)
+                    return
                 }
-                lastPressedKey = null
-                pressTimer.stop()
-                languageSwitchTimer.stop()
-                ActivePoints.remove(point)
-                return
+            } else {
+                silenceFeedback = false
             }
 
             if (popper.expanded && point.pressedKey === lastPressedKey) {
@@ -246,9 +251,9 @@ Item {
         if (point.pressedKey === key)
             return
 
-        buttonPressEffect.play()
+        if (!silenceFeedback) buttonPressEffect.play()
 
-        if (key) {
+        if (key && !silenceFeedback) {
             if (typeof key.keyType !== 'undefined' && key.keyType === KeyType.CharacterKey && key.text !== " ") {
                 SampleCache.play("/usr/share/sounds/jolla-ambient/stereo/keyboard_letter.wav")
             } else {
