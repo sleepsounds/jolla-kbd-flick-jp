@@ -313,7 +313,7 @@ Item {
                 layoutChangeAllowed: mode === "common"
                 thresholdX: swipeGestureIsSafe ? (Theme.startDragDistance * 4.0) : (Theme.startDragDistance * 6.0)
                 thresholdY: Theme.startDragDistance * 1.8
-                swipeEnabled: layoutChangeAllowed && (canvas.layoutModel.enabledCount > 1)
+                swipeEnabled: !isFlicking && layoutChangeAllowed && (canvas.layoutModel.enabledCount > 1)
                 allowedDirections: SwipeGestureArea.DirectionLeft | SwipeGestureArea.DirectionRight
                 onSwipeAmountChanged: {
                     if (gestureInProgress) {

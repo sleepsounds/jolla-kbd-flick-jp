@@ -90,7 +90,8 @@ SwipeGestureArea {
     property Item inputHandler: InputHandler {
     }
 
-    readonly property bool swipeGestureIsSafe: !releaseTimer.running && !flicker.enabled
+    readonly property bool swipeGestureIsSafe: !releaseTimer.running
+    property bool isFlicking: flicker.isFlicking
 
     height: layout ? layout.height : 0
     onLayoutChanged: if (layout) layout.parent = keyboard
@@ -262,6 +263,7 @@ SwipeGestureArea {
                 popper.setActiveCell(point.x, point.y)
             } else if (flicker.enabled) {
                 flicker.setIndex(point)
+                flicker.isFlicking = true
             } else {
                 updatePressedKey(point)
             }
@@ -338,6 +340,7 @@ SwipeGestureArea {
             } else {
                 if (flicker.enabled) {
                     flicker.setIndex(point)
+                    flicker.isFlicking = false
                 }
                 triggerKey(point.pressedKey)
             }
