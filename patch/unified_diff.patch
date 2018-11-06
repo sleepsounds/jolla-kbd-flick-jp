@@ -1,0 +1,43 @@
+--- original/usr/share/maliit/plugins/com/jolla/KeyboardBase.qml	2015-12-30 21:23:22.020136778 +0900
++++ patched/usr/share/maliit/plugins/com/jolla/KeyboardBase.qml	2015-12-30 21:31:34.500136034 +0900
+@@ -87,6 +87,11 @@
+     // we can't rely on point values anymore
+     onHeightChanged: closeSwipeActive = false
+ 
++    Flicker {
++        id: flicker
++        target: lastPressedKey
++    }
++
+     Popper {
+         id: popper
+         z: 10
+@@ -205,7 +210,8 @@
+             if (ActivePoints.array.length === 1
+                     && closeSwipeActive
+                     && pressTimer.running
+-                    && (point.y - point.startY > closeSwipeThreshold)) {
++                    && (point.y - point.startY > closeSwipeThreshold)
++                    && !flicker.enabled) {
+                 MInputMethodQuick.userHide()
+                 if (point.pressedKey) {
+                     inputHandler._handleKeyRelease()
+@@ -220,6 +226,8 @@
+ 
+             if (popper.expanded && point.pressedKey === lastPressedKey) {
+                 popper.setActiveCell(point.x, point.y)
++            } else if (flicker.enabled) {
++                flicker.setIndex(point)
+             } else {
+                 updatePressedKey(point)
+             }
+@@ -288,6 +296,9 @@
+                 popper.release()
+                 point.pressedKey.pressed = false
+             } else {
++                if (flicker.enabled) {
++                    flicker.setIndex(point)
++                }
+                 releaseKey(point.pressedKey)
+             }
+ 
