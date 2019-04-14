@@ -91,7 +91,6 @@ SwipeGestureArea {
     }
 
     readonly property bool swipeGestureIsSafe: !releaseTimer.running
-    property bool isFlicking: flicker.isFlicking
 
     height: layout ? layout.height : 0
     onLayoutChanged: if (layout) layout.parent = keyboard
@@ -100,11 +99,6 @@ SwipeGestureArea {
     // if height changed while touch point was being held
     // we can't rely on point values anymore
     onHeightChanged: closeSwipeActive = false
-
-    Flicker {
-        id: flicker
-        target: lastPressedKey
-    }
 
     Popper {
         id: popper
@@ -238,7 +232,7 @@ SwipeGestureArea {
             point.x = incomingPoint.x
             point.y = incomingPoint.y
 
-            if (ActivePoints.array.length === 1 && closeSwipeActive && pressTimer.running && !flicker.enabled) {
+            if (ActivePoints.array.length === 1 && closeSwipeActive && pressTimer.running) {
                 var yDiff = point.y - point.startY
                 silenceFeedback = (yDiff > Math.abs(point.x - point.startX))
 
@@ -261,9 +255,6 @@ SwipeGestureArea {
 
             if (popper.expanded && point.pressedKey === lastPressedKey) {
                 popper.setActiveCell(point.x, point.y)
-            } else if (flicker.enabled) {
-                flicker.setIndex(point)
-                flicker.isFlicking = true
             } else {
                 updatePressedKey(point)
             }
@@ -338,10 +329,6 @@ SwipeGestureArea {
                 popper.release()
                 point.pressedKey.pressed = false
             } else {
-                if (flicker.enabled) {
-                    flicker.setIndex(point)
-                    flicker.isFlicking = false
-                }
                 triggerKey(point.pressedKey)
             }
 
